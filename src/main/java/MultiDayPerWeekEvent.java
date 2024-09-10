@@ -14,7 +14,7 @@ public class MultiDayPerWeekEvent extends CalendarEvent
 	 * @param endTime
 	 */
 	public MultiDayPerWeekEvent(String description, String location, GregorianCalendar startTime,
-			GregorianCalendar endTime) {
+			GregorianCalendar endTime, GregorianCalendar repeatUntil, int days[]) {
 		super(description, location, startTime, endTime);
 	}
 	

@@ -12,7 +12,7 @@ public class WeeklyEvent extends CalendarEvent
 	 * @param startTime
 	 * @param endTime
 	 */
-	public WeeklyEvent(String description, String location, GregorianCalendar startTime, GregorianCalendar endTime) {
+	public WeeklyEvent(String description, String location, GregorianCalendar startTime, GregorianCalendar endTime, GregorianCalendar repeatUntil) {
 		super(description, location, startTime, endTime);
 	}
 	
