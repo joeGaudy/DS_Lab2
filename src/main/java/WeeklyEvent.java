@@ -1,5 +1,6 @@
 import java.util.GregorianCalendar;
 
+import calendar.Meeting;
 import calendar.MeetingCalendar;
 
 public class WeeklyEvent extends CalendarEvent
@@ -18,7 +19,13 @@ public class WeeklyEvent extends CalendarEvent
 	
 	public void scheduleEvent(MeetingCalendar calendar)
 	{
+		Meeting M = new Meeting(getDescription(), getLocation(), getStartTime(), getEndTime());
 		
+		while (M.getEndTime().after(getRepeatUntil()) == false);
+		{
+			calendar.addMeeting(M);
+			M.getEndTime().add((GregorianCalendar.DAY_OF_YEAR), 7);
+		}
 	}
 
 	/**
