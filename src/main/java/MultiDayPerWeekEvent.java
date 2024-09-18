@@ -16,6 +16,8 @@ public class MultiDayPerWeekEvent extends CalendarEvent
 	public MultiDayPerWeekEvent(String description, String location, GregorianCalendar startTime,
 			GregorianCalendar endTime, GregorianCalendar repeatUntil, int days[]) {
 		super(description, location, startTime, endTime);
+		this.repeatUntil = repeatUntil;
+		this.days = days;
 	}
 	
 	public void scheduleEvent(MeetingCalendar calendar)

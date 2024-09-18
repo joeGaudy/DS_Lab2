@@ -15,16 +15,20 @@ public class WeeklyEvent extends CalendarEvent
 	 */
 	public WeeklyEvent(String description, String location, GregorianCalendar startTime, GregorianCalendar endTime, GregorianCalendar repeatUntil) {
 		super(description, location, startTime, endTime);
+		this.repeatUntil = repeatUntil;
 	}
 	
 	public void scheduleEvent(MeetingCalendar calendar)
 	{
 		Meeting M = new Meeting(getDescription(), getLocation(), getStartTime(), getEndTime());
 		
-		while (M.getEndTime().after(getRepeatUntil()) == false);
+		while (M.getEndTime().after(getRepeatUntil()) == false)
 		{
 			calendar.addMeeting(M);
+			M.getStartTime().add((GregorianCalendar.DAY_OF_YEAR), 7);
 			M.getEndTime().add((GregorianCalendar.DAY_OF_YEAR), 7);
+			
+			
 		}
 	}
 
