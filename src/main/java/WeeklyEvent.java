@@ -20,14 +20,13 @@ public class WeeklyEvent extends CalendarEvent
 	
 	public void scheduleEvent(MeetingCalendar calendar)
 	{
-		Meeting M = new Meeting(getDescription(), getLocation(), getStartTime(), getEndTime());
+		Meeting M = new Meeting(getDescription(), getLocation(),(GregorianCalendar) getStartTime().clone(), (GregorianCalendar) getEndTime().clone());
 		
 		while (M.getEndTime().after(getRepeatUntil()) == false)
 		{
 			calendar.addMeeting(M);
 			M.getStartTime().add((GregorianCalendar.DAY_OF_YEAR), 7);
 			M.getEndTime().add((GregorianCalendar.DAY_OF_YEAR), 7);
-			
 			
 		}
 	}

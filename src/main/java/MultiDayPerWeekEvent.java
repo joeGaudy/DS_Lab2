@@ -1,5 +1,6 @@
 import java.util.GregorianCalendar;
 
+import calendar.Meeting;
 import calendar.MeetingCalendar;
 
 public class MultiDayPerWeekEvent extends CalendarEvent
@@ -20,8 +21,33 @@ public class MultiDayPerWeekEvent extends CalendarEvent
 		this.days = days;
 	}
 	
+	public boolean checker(GregorianCalendar C)
+	{
+		for (int i = 0; i < days.length; i++)
+		{
+			if (days[i] == C.get(GregorianCalendar.DAY_OF_WEEK))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void scheduleEvent(MeetingCalendar calendar)
 	{
+		Meeting M = new Meeting(getDescription(), getLocation(),(GregorianCalendar) getStartTime().clone(), (GregorianCalendar) getEndTime().clone());
+		
+		while (M.getEndTime().after(getRepeatUntil()) == false)
+		{
+			if (checker(M.getStartTime())== true)
+			{
+				calendar.addMeeting(M);
+			}
+			
+			M.getStartTime().add((GregorianCalendar.DAY_OF_WEEK), 1);
+			M.getEndTime().add((GregorianCalendar.DAY_OF_WEEK), 1);
+			
+		}
 		
 	}
 
